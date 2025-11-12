@@ -1,0 +1,63 @@
+{
+  "phases": [
+    {
+      "id": "1",
+      "title": "Phase 1: Pre-Production"
+    },
+    {
+      "id": "2",
+      "title": "Phase 2: Production"
+    },
+    {
+      "id": "3",
+      "title": "Phase 3: Post-Production"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "phaseId": "1",
+      "title": "Scriptwriting",
+      "description": "Write the script for the video.",
+      "assignee": "Alice",
+      "est_time": "2h",
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": "t2",
+      "phaseId": "1",
+      "title": "Storyboarding",
+      "description": "Create a storyboard for the video.",
+      "assignee": "Bob",
+      "est_time": "3h",
+      "priority": "Medium",
+      "dependencies": ["t1"]
+    },
+    {
+      "id": "t3",
+      "phaseId": "2",
+      "title": "Filming",
+      "description": "Film the video according to the storyboard.",
+      "assignee": "Charlie",
+      "est_time": "8h",
+      "priority": "High",
+      "dependencies": ["t2"]
+    },
+    {
+      "id": "t4",
+      "phaseId": "3",
+      "title": "Editing",
+      "description": "Edit the video.",
+      "assignee": "David",
+      "est_time": "6h",
+      "priority": "High",
+      "dependencies": ["t3"]
+    }
+  ],
+  "metadata": {
+    "total_est_time": "19h",
+    "complexity_score": 7,
+    "suggested_tags": ["video-production", "marketing"]
+  }
+}
