@@ -1,0 +1,23 @@
+{
+  "phases": [
+    { "id": "phase-1", "title": "Discovery & Planning" },
+    { "id": "phase-2", "title": "Design" },
+    { "id": "phase-3", "title": "Development" },
+    { "id": "phase-4", "title": "Launch" }
+  ],
+  "tasks": [
+    { "id": "task-1", "title": "Initial client meeting", "phase": "phase-1", "dependencies": [] },
+    { "id": "task-2", "title": "Gather requirements", "phase": "phase-1", "dependencies": ["task-1"] },
+    { "id": "task-3", "title": "Create wireframes", "phase": "phase-2", "dependencies": ["task-2"] },
+    { "id": "task-4", "title": "Design mockups", "phase": "phase-2", "dependencies": ["task-3"] },
+    { "id": "task-5", "title": "Develop frontend", "phase": "phase-3", "dependencies": ["task-4"] },
+    { "id": "task-6", "title": "Develop backend", "phase": "phase-3", "dependencies": ["task-4"] },
+    { "id": "task-7", "title": "Deploy to staging", "phase": "phase-4", "dependencies": ["task-5", "task-6"] },
+    { "id": "task-8", "title": "Client review", "phase": "phase-4", "dependencies": ["task-7"] }
+  ],
+  "metadata": {
+    "total_est_time": "40h",
+    "complexity_score": 8,
+    "suggested_tags": ["web-development", "design", "landing-page"]
+  }
+}

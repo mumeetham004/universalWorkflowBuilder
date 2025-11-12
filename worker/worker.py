@@ -26,42 +26,49 @@ def generate_workflow(prompt, domain, tone, constraints):
     model = genai.GenerativeModel('gemini-pro')
 
     # Construct the prompt using the provided template
-    full_prompt = f"Create a workflow for: {prompt}. Domain: {domain}. Tone: {tone}. Constraints: {constraints}. Output must include phases[] with tasks[], metadata, suggested_tags[]."
+    full_prompt = f"Create a workflow for: {prompt}. Domain: {domain}. Tone: {tone}. Constraints: {constraints}. Output must be a JSON object that conforms to this schema: {json.dumps(workflow_schema)}"
 
-    # Placeholder for the actual API call
-    # response = model.generate_content(full_prompt)
+    response = model.generate_content(full_prompt)
 
-    # For now, return a sample workflow
-    sample_workflow = {
-        "phases": [{"id": "1", "title": "Phase 1"}],
-        "tasks": [{"id": "t1", "title": "Task 1"}],
-        "metadata": {"total_est_time": "1h"}
-    }
-
-    # Validate the generated workflow against the schema
     try:
-        validate(instance=sample_workflow, schema=workflow_schema)
-        return sample_workflow
-    except Exception as e:
-        print(f"Schema validation failed: {e}")
+        generated_workflow = json.loads(response.text)
+        validate(instance=generated_workflow, schema=workflow_schema)
+        return generated_workflow
+    except (json.JSONDecodeError, Exception) as e:
+        print(f"Error processing Gemini response: {e}")
         return None
 
 def review_workflow(workflow):
     """
     Reviews an existing workflow for optimization.
     """
-    # Placeholder for the review logic
-    pass
+    model = genai.GenerativeModel('gemini-pro')
+    prompt = f"Review this workflow and suggest missing steps, optimization, or reordering: {json.dumps(workflow)}"
+    response = model.generate_content(prompt)
+    return response.text
 
 def optimize_workflow(workflow):
     """
     Optimizes a workflow for efficiency.
     """
-    # Placeholder for the optimization logic
-    pass
+    model = genai.GenerativeModel('gemini-pro')
+    prompt = f"Compress this workflow, parallelize tasks where possible, and adjust priorities: {json.dumps(workflow)}"
+    response = model.generate_content(prompt)
+    return response.text
+
 
 if __name__ == "__main__":
     # Example usage
     user_prompt = "Create a marketing campaign for a new product."
     generated_workflow = generate_workflow(user_prompt, "Marketing", "Professional", "None")
-    print(json.dumps(generated_workflow, indent=2))
+    if generated_workflow:
+        print("Generated Workflow:")
+        print(json.dumps(generated_workflow, indent=2))
+
+        review = review_workflow(generated_workflow)
+        print("\nReview:")
+        print(review)
+
+        optimization = optimize_workflow(generated_workflow)
+        print("\nOptimization:")
+        print(optimization)
