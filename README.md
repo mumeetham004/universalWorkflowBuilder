@@ -1,78 +1,83 @@
 # Universal Workflow Builder AI Web App
 
-This project is a full-stack application that allows users to generate structured, actionable workflows from a simple prompt. The app uses a combination of React, Node.js, Python, and Supabase to provide a comprehensive solution for workflow management.
-
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-
-## Features
-
-- **AI-Powered Workflow Generation:** Automatically generate workflows from a user prompt.
-- **Visual Workflow Editor:** A drag-and-drop interface for editing workflows.
-- **AI Review and Optimization:** Get suggestions for improving your workflows.
-- **Versioning and History:** Track changes to your workflows over time.
-- **Exporting:** Export your workflows to PDF, Markdown, or Notion.
-- **Collaboration:** Work with your team in real-time.
+This project is a full-stack web application that allows users to generate structured, actionable workflows from a simple prompt. The application uses AI to generate the workflow, which can then be visualized, edited, and exported.
 
 ## Tech Stack
 
-- **Frontend:** React, React Flow, Tailwind CSS
+- **Frontend:** React, Vite, React Flow, Tailwind CSS
 - **Backend:** Node.js, Express
-- **AI Worker:** Python, Gemini
-- **Database:** Supabase (PostgreSQL)
+- **AI Worker:** Python, Google Gemini
+- **Database & Auth:** Supabase (Postgres)
 
 ## Project Structure
 
-The project is divided into four main directories:
-
-- `frontend/`: The React frontend application.
-- `backend/`: The Node.js backend API.
-- `worker/`: The Python AI worker.
-- `supabase/`: The Supabase database schema and migrations.
-
-Each directory contains its own `README.md` with specific instructions.
+- `frontend/`: Contains the React frontend application.
+- `backend/`: Contains the Node.js Express backend API.
+- `worker/`: Contains the Python AI worker.
+- `supabase/`: Contains the Supabase database schema.
 
 ## Getting Started
 
-To get started with this project, you will need to have the following installed:
+### Prerequisites
 
 - Node.js
 - Python
-- Docker (optional)
+- Supabase account
+- Google Gemini API key
+
+### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/universal-workflow-builder.git
+   git clone <repository-url>
    ```
 
-2. **Set up the backend:**
-   - Navigate to the `backend/` directory and run `npm install`.
-   - Create a `.env` file and add the necessary environment variables.
-   - Run `npm start` to start the backend server.
+2. **Install frontend dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-3. **Set up the frontend:**
-   - Navigate to the `frontend/` directory and run `npm install`.
-   - Run `npm start` to start the frontend development server.
+3. **Install backend dependencies:**
+   ```bash
+   cd ../backend
+   npm install
+   ```
 
-4. **Set up the AI worker:**
-   - Navigate to the `worker/` directory and run `pip install -r requirements.txt`.
-   - Set the `GOOGLE_API_KEY` environment variable.
-   - Run `python worker.py` to start the worker.
+4. **Install worker dependencies:**
+   ```bash
+   cd ../worker
+   pip install -r requirements.txt
+   ```
 
-5. **Set up the database:**
-   - Create a new project on [Supabase](https://supabase.io/).
-   - Apply the database schema by running the SQL commands in `supabase/migrations/0001_initial_schema.sql`.
+### Configuration
 
-## Usage
+1. **Set up Supabase:**
+   - Create a new project on Supabase.
+   - Run the SQL schema from `supabase/migrations/0001_initial_schema.sql` in the Supabase SQL editor.
+   - Add your Supabase project URL and anon key to a `.env` file in the `frontend` directory.
 
-Once the application is running, you can open your browser to `http://localhost:3000` to start using the app.
+2. **Set up Google Gemini:**
+   - Obtain a Google Gemini API key.
+   - Add your API key to a `.env` file in the `worker` directory.
 
-## Contributing
+### Running the Application
 
-Contributions are welcome! Please open an issue or submit a pull request with your changes.
+1. **Start the frontend:**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+
+2. **Start the backend:**
+   ```bash
+   cd ../backend
+   npm start
+   ```
+
+3. **Run the AI worker:**
+   The AI worker is designed to be run as a separate service that the backend can communicate with. You can run it directly for testing:
+   ```bash
+   cd ../worker
+   python worker.py
+   ```
