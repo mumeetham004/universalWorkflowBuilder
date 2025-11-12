@@ -1,4 +1,4 @@
-// frontend/src/components/TaskPanel.js
+// frontend/src/components/TaskPanel.jsx
 import React from 'react';
 
 export default function TaskPanel() {

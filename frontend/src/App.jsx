@@ -1,4 +1,3 @@
-// frontend/src/App.js
 import React from 'react';
 import WorkflowCanvas from './components/WorkflowCanvas';
 import TaskPanel from './components/TaskPanel';

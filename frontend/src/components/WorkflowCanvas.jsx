@@ -1,4 +1,4 @@
-// frontend/src/components/WorkflowCanvas.js
+// frontend/src/components/WorkflowCanvas.jsx
 import React, { useCallback } from 'react';
 import ReactFlow, {
   MiniMap,
@@ -8,7 +8,6 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
 } from 'reactflow';
-
 import 'reactflow/dist/style.css';
 import sampleWorkflow from '../sample-workflow.json';
 
@@ -17,7 +16,6 @@ const initialNodes = sampleWorkflow.tasks.map((task, i) => ({
   position: { x: i * 250, y: 100 },
   data: { label: task.title },
 }));
-
 const initialEdges = sampleWorkflow.tasks.flatMap((task) =>
   task.dependencies.map((dep) => ({
     id: `e${dep}-${task.id}`,
@@ -25,7 +23,6 @@ const initialEdges = sampleWorkflow.tasks.flatMap((task) =>
     target: task.id,
   }))
 );
-
 
 export default function WorkflowCanvas() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
