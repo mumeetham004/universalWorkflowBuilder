@@ -1,16 +1,20 @@
 import React from 'react';
-import WorkflowCanvas from './components/WorkflowCanvas';
-import TaskPanel from './components/TaskPanel';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import Products from './components/Products';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="flex h-screen">
-      <div className="w-2/3">
-        <WorkflowCanvas />
-      </div>
-      <div className="w-1/3">
-        <TaskPanel />
-      </div>
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      <main>
+        <Hero />
+        <Features />
+        <Products />
+      </main>
+      <Footer />
     </div>
   );
 }

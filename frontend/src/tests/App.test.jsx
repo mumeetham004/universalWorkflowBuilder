@@ -3,9 +3,15 @@ import App from '../App';
 import { describe, it, expect } from 'vitest';
 
 describe('App', () => {
-  it('renders task panel heading', () => {
+  it('renders brand name Dairia', () => {
     render(<App />);
-    const headingElement = screen.getByText(/Task Details/i);
-    expect(headingElement).toBeInTheDocument();
+    const brandElements = screen.getAllByText(/Dairia/i);
+    expect(brandElements.length).toBeGreaterThan(0);
+  });
+
+  it('renders Shop Now button', () => {
+    render(<App />);
+    const buttonElement = screen.getByText(/Shop Now/i);
+    expect(buttonElement).toBeInTheDocument();
   });
 });
